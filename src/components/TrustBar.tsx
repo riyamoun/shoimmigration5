@@ -31,8 +31,8 @@ const TrustBar = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="flex flex-col items-center text-center group"
               >
-                <div className="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center mb-4 group-hover:bg-gold transition-colors duration-300">
-                  <stat.icon className="w-7 h-7 text-gold group-hover:text-slate-900 transition-colors duration-300" />
+                <div className="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center mb-4 group-hover:bg-amber-500 transition-colors duration-300">
+                  <stat.icon className="w-7 h-7 text-amber-500 group-hover:text-slate-900 transition-colors duration-300" />
                 </div>
                 <span className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-1">
                   {stat.value}
@@ -50,4 +50,5 @@ const TrustBar = () => {
 };
 
 export default TrustBar;
+
 

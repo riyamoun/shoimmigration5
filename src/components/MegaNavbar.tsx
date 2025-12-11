@@ -38,12 +38,12 @@ const MegaNavbar = () => {
       <div className="bg-slate-900 text-white py-2 text-sm hidden md:block">
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <a href="tel:+611234567890" className="flex items-center gap-2 hover:text-gold transition-colors">
-              <Phone className="w-4 h-4" />
-              +61 1234 567 890
+            <a href="tel:+919588584208" className="flex items-center gap-2 hover:text-amber-400 transition-colors">
+              <Phone className="w-4 h-4 text-amber-400" />
+              +91 95885 84208
             </a>
-            <a href="mailto:info@shoimmigration.com" className="flex items-center gap-2 hover:text-gold transition-colors">
-              <Mail className="w-4 h-4" />
+            <a href="mailto:info@shoimmigration.com" className="flex items-center gap-2 hover:text-amber-400 transition-colors">
+              <Mail className="w-4 h-4 text-amber-400" />
               info@shoimmigration.com
             </a>
           </div>
@@ -58,7 +58,7 @@ const MegaNavbar = () => {
       <header 
         className={`sticky top-0 z-50 transition-all duration-500 ${
           scrolled 
-            ? 'bg-white/95 backdrop-blur-lg shadow-lg py-3' 
+            ? 'bg-white shadow-lg py-3' 
             : 'bg-slate-900/95 backdrop-blur-lg py-4'
         }`}
       >
@@ -67,9 +67,9 @@ const MegaNavbar = () => {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
               <div className={`p-2 rounded-lg transition-all duration-300 ${
-                scrolled ? 'bg-slate-900' : 'bg-gold/20'
+                scrolled ? 'bg-slate-900' : 'bg-amber-500/20'
               }`}>
-                <Globe className="w-6 h-6 text-gold" />
+                <Globe className="w-6 h-6 text-amber-500" />
               </div>
               <div>
                 <span className={`text-xl font-serif font-bold transition-colors duration-300 ${
@@ -96,8 +96,8 @@ const MegaNavbar = () => {
                     href={item.href}
                     className={`flex items-center gap-1 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                       scrolled 
-                        ? 'text-slate-700 hover:text-gold hover:bg-slate-100' 
-                        : 'text-white/90 hover:text-gold hover:bg-white/10'
+                        ? 'text-slate-700 hover:text-amber-500 hover:bg-slate-100' 
+                        : 'text-white/90 hover:text-amber-400 hover:bg-white/10'
                     }`}
                   >
                     {item.name}
@@ -112,11 +112,11 @@ const MegaNavbar = () => {
                           <Link
                             key={country.slug}
                             href={`/country/${country.slug}`}
-                            className="group/item flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"
+                            className="group/item flex items-start gap-3 p-3 rounded-xl hover:bg-amber-50 transition-colors"
                           >
                             <span className="text-3xl">{country.flag}</span>
                             <div className="flex-1">
-                              <h4 className="font-semibold text-slate-900 group-hover/item:text-gold transition-colors">
+                              <h4 className="font-semibold text-slate-900 group-hover/item:text-amber-600 transition-colors">
                                 {country.name}
                               </h4>
                               <p className="text-xs text-slate-500 mb-2">{country.tagline}</p>
@@ -136,11 +136,11 @@ const MegaNavbar = () => {
                       </div>
                       <div className="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center">
                         <span className="text-sm text-slate-500">
-                          Can't find your destination?
+                          Can&apos;t find your destination?
                         </span>
                         <Link 
                           href="#contact"
-                          className="text-sm font-semibold text-gold hover:text-gold-dark transition-colors"
+                          className="text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors"
                         >
                           Contact our experts →
                         </Link>
@@ -153,9 +153,13 @@ const MegaNavbar = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
+              <a href="tel:+919588584208" className={`flex items-center gap-2 ${scrolled ? 'text-slate-700' : 'text-white/80'} hover:text-amber-500 transition-colors`}>
+                <Phone className="w-4 h-4" />
+                <span className="text-sm font-medium">+91 95885 84208</span>
+              </a>
               <Link 
                 href="#contact"
-                className="bg-gold hover:bg-gold-dark text-slate-900 font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-gold/25"
+                className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/25"
               >
                 Free Assessment
               </Link>
@@ -179,12 +183,17 @@ const MegaNavbar = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t">
             <div className="container mx-auto px-6 py-6">
+              {/* Mobile Contact */}
+              <div className="flex items-center gap-2 text-amber-600 font-semibold mb-4 pb-4 border-b">
+                <Phone className="w-4 h-4" />
+                <a href="tel:+919588584208">+91 95885 84208</a>
+              </div>
               <nav className="space-y-2">
                 {navItems.map((item) => (
                   <div key={item.name}>
                     <Link
                       href={item.href}
-                      className="block py-3 text-slate-700 font-medium hover:text-gold transition-colors"
+                      className="block py-3 text-slate-700 font-medium hover:text-amber-500 transition-colors"
                       onClick={() => !item.megaMenu && setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -195,7 +204,7 @@ const MegaNavbar = () => {
                           <Link
                             key={country.slug}
                             href={`/country/${country.slug}`}
-                            className="flex items-center gap-2 py-2 text-slate-600 hover:text-gold transition-colors"
+                            className="flex items-center gap-2 py-2 text-slate-600 hover:text-amber-500 transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             <span>{country.flag}</span>
@@ -210,7 +219,7 @@ const MegaNavbar = () => {
               <div className="mt-6 pt-6 border-t">
                 <Link 
                   href="#contact"
-                  className="block w-full bg-gold text-slate-900 font-semibold px-6 py-3 rounded-lg text-center"
+                  className="block w-full bg-amber-500 text-slate-900 font-semibold px-6 py-3 rounded-lg text-center"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Free Assessment
@@ -225,4 +234,3 @@ const MegaNavbar = () => {
 };
 
 export default MegaNavbar;
-

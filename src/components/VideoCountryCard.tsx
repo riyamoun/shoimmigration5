@@ -82,9 +82,9 @@ const VideoCountryCard = ({ country, index }: VideoCountryCardProps) => {
           <div className={`absolute top-4 right-4 z-10 transition-all duration-300 ${
             isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
           }`}>
-            <div className="glass-dark rounded-lg px-3 py-2 text-white text-sm">
+            <div className="bg-slate-900/80 backdrop-blur-sm rounded-lg px-3 py-2 text-white text-sm">
               <div className="flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-gold" />
+                <TrendingUp className="w-4 h-4 text-amber-400" />
                 <span>{country.stats.successRate} Success</span>
               </div>
             </div>
@@ -93,12 +93,12 @@ const VideoCountryCard = ({ country, index }: VideoCountryCardProps) => {
           {/* Content */}
           <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
             {/* Country Name */}
-            <h3 className="font-serif text-3xl font-bold text-white mb-2 group-hover:text-gold transition-colors">
+            <h3 className="font-serif text-3xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
               {country.name}
             </h3>
 
             {/* Tagline */}
-            <p className="text-gold font-medium mb-3">{country.tagline}</p>
+            <p className="text-amber-400 font-medium mb-3">{country.tagline}</p>
 
             {/* Description */}
             <p className={`text-white/80 text-sm mb-4 transition-all duration-300 ${
@@ -139,7 +139,7 @@ const VideoCountryCard = ({ country, index }: VideoCountryCardProps) => {
             </div>
 
             {/* CTA */}
-            <div className={`flex items-center gap-2 text-gold font-semibold transition-all duration-300 ${
+            <div className={`flex items-center gap-2 text-amber-400 font-semibold transition-all duration-300 ${
               isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
             }`}>
               Explore {country.name}
@@ -149,7 +149,7 @@ const VideoCountryCard = ({ country, index }: VideoCountryCardProps) => {
 
           {/* Border Glow on Hover */}
           <div className={`absolute inset-0 rounded-2xl border-2 transition-all duration-300 ${
-            isHovered ? 'border-gold/50' : 'border-transparent'
+            isHovered ? 'border-amber-400/50' : 'border-transparent'
           }`} />
         </div>
       </Link>
@@ -158,4 +158,3 @@ const VideoCountryCard = ({ country, index }: VideoCountryCardProps) => {
 };
 
 export default VideoCountryCard;
-

@@ -17,24 +17,23 @@ const SearchHero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4" />
-      </video>
+      {/* Background Image - Beautiful Airplane Wing */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop"
+          alt="Airplane wing at sunset"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900/90" />
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/70 to-slate-900/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-slate-900/30" />
 
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-gold/5 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-amber-500/5 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       {/* Content */}
@@ -48,7 +47,7 @@ const SearchHero = () => {
         >
           <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
           <span className="text-white/90 text-sm font-medium">
-            Trusted by 5000+ Happy Clients Worldwide
+            MARA Registered Migration Agents
           </span>
         </motion.div>
 
@@ -59,9 +58,14 @@ const SearchHero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-6"
         >
-          Global Immigration
+          Your Global Future
           <br />
-          <span className="text-gold">Experts</span>
+          <span className="text-amber-400 relative">
+            Starts Here
+            <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
+              <path d="M2 10C50 4 150 2 298 10" stroke="#f59e0b" strokeWidth="3" strokeLinecap="round"/>
+            </svg>
+          </span>
         </motion.h1>
 
         {/* Subheading */}
@@ -71,8 +75,8 @@ const SearchHero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mb-12"
         >
-          Your trusted partner for immigration to Canada, Australia, UK, USA & beyond. 
-          MARA registered agents with 98% success rate.
+          Expert guidance for Student, Skilled Worker, and Permanent Residency Visas. 
+          Your trusted partner for migration to Australia, Canada, UK & USA.
         </motion.p>
 
         {/* Search Bar */}
@@ -82,7 +86,7 @@ const SearchHero = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="relative max-w-2xl mx-auto"
         >
-          <div className="glass rounded-2xl p-2 shadow-2xl">
+          <div className="bg-white rounded-2xl p-2 shadow-2xl">
             <div className="flex items-center gap-4">
               <div className="flex-1 relative">
                 <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -96,7 +100,7 @@ const SearchHero = () => {
                   className="w-full pl-12 pr-4 py-4 bg-transparent text-slate-900 placeholder-slate-400 outline-none text-lg"
                 />
               </div>
-              <button className="bg-gold hover:bg-gold-dark text-slate-900 font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 flex items-center gap-2 group">
+              <button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 flex items-center gap-2 group">
                 <Search className="w-5 h-5" />
                 <span className="hidden sm:inline">Search</span>
               </button>
@@ -143,7 +147,7 @@ const SearchHero = () => {
             <Link
               key={country.slug}
               href={`/country/${country.slug}`}
-              className="flex items-center gap-1 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm transition-colors"
+              className="flex items-center gap-1 bg-white/10 hover:bg-amber-500/80 hover:text-slate-900 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm transition-all duration-300"
             >
               <span>{country.flag}</span>
               {country.name}
@@ -165,7 +169,7 @@ const SearchHero = () => {
             { value: '9', label: 'Countries' },
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
-              <div className="text-4xl md:text-5xl font-serif font-bold text-gold">{stat.value}</div>
+              <div className="text-4xl md:text-5xl font-serif font-bold text-amber-400">{stat.value}</div>
               <div className="text-white/60 text-sm mt-1">{stat.label}</div>
             </div>
           ))}
@@ -184,7 +188,7 @@ const SearchHero = () => {
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-gold rounded-full"
+              className="w-1.5 h-1.5 bg-amber-400 rounded-full"
             />
           </div>
         </a>
@@ -194,4 +198,3 @@ const SearchHero = () => {
 };
 
 export default SearchHero;
-

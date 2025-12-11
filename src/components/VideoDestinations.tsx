@@ -16,11 +16,11 @@ const VideoDestinations = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-gold font-semibold text-sm uppercase tracking-wider">
+          <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">
             Explore Destinations
           </span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mt-3 mb-4">
-            Choose Your <span className="text-gold">Destination</span>
+            Choose Your <span className="text-amber-400">Destination</span>
           </h2>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
             Discover immigration opportunities in the world's most sought-after countries. 
@@ -52,7 +52,7 @@ const VideoDestinations = () => {
           </p>
           <a 
             href="#contact"
-            className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-slate-900 font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-gold/25"
+            className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/25"
           >
             Get Free Consultation
           </a>
@@ -63,4 +63,5 @@ const VideoDestinations = () => {
 };
 
 export default VideoDestinations;
+
 
