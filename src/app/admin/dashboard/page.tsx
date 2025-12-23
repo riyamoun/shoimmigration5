@@ -1,7 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 interface Lead {
   id: string;
@@ -16,19 +19,34 @@ interface Lead {
 }
 
 export default function AdminDashboard() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetchLeads();
-  }, []);
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    } else if (status === 'authenticated') {
+      // Check if user is ADMIN
+      if (session?.user?.role !== 'ADMIN') {
+        setError('Access denied. Admin privileges required.');
+        setLoading(false);
+        return;
+      }
+      fetchLeads();
+    }
+  }, [status, session, router]);
 
   const fetchLeads = async () => {
     try {
       setLoading(true);
       const response = await fetch('/api/leads');
-      if (!response.ok) throw new Error('Failed to fetch leads');
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to fetch leads');
+      }
       const data = await response.json();
       setLeads(data);
       setError('');
@@ -36,6 +54,23 @@ export default function AdminDashboard() {
       setError(err instanceof Error ? err.message : 'Failed to load leads');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const updateLeadStatus = async (leadId: string, newStatus: string) => {
+    try {
+      const response = await fetch(`/api/leads/${leadId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!response.ok) throw new Error('Failed to update status');
+      
+      // Refresh leads
+      fetchLeads();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to update status');
     }
   };
 
@@ -165,9 +200,15 @@ export default function AdminDashboard() {
                         <td className="py-3 px-4">{lead.visaType}</td>
                         <td className="py-3 px-4">{lead.targetCountry}</td>
                         <td className="py-3 px-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(lead.status)}`}>
-                            {lead.status}
-                          </span>
+                          <select
+                            value={lead.status}
+                            onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
+                            className={`px-3 py-1 rounded-full text-xs font-semibold cursor-pointer ${getStatusColor(lead.status)}`}
+                          >
+                            <option value="PENDING">PENDING</option>
+                            <option value="CONTACTED">CONTACTED</option>
+                            <option value="CLOSED">CLOSED</option>
+                          </select>
                         </td>
                         <td className="py-3 px-4 text-gray-600">{formatDate(lead.createdAt)}</td>
                       </tr>
