@@ -70,8 +70,6 @@ const CountryContent = ({ country }: CountryContentProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {country.subLinks.map((link, idx) => {
             const hasDetailPage = hasDetailedVisaPage(country.slug, link.slug);
-            const CardWrapper = hasDetailPage ? Link : 'div';
-            const linkProps = hasDetailPage ? { href: `/country/${country.slug}/visa/${link.slug}` } : {};
             
             return (
               <motion.div
@@ -82,24 +80,35 @@ const CountryContent = ({ country }: CountryContentProps) => {
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
                 id={link.slug}
               >
-                <CardWrapper 
-                  {...linkProps}
-                  className="group bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-gold border-2 border-transparent transition-all cursor-pointer block h-full"
-                >
-                  <h3 className="font-serif text-xl font-bold text-slate-900 group-hover:text-gold transition-colors mb-2">
-                    {link.name}
-                  </h3>
-                  <p className="text-slate-600 text-sm mb-3">{link.description}</p>
-                  <div className="flex items-center text-gold text-sm font-semibold">
-                    {hasDetailPage ? 'View Details' : 'Learn More'} 
-                    <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                  {hasDetailPage && (
+                {hasDetailPage ? (
+                  <Link 
+                    href={`/country/${country.slug}/visa/${link.slug}`}
+                    className="group bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-gold border-2 border-transparent transition-all cursor-pointer block h-full"
+                  >
+                    <h3 className="font-serif text-xl font-bold text-slate-900 group-hover:text-gold transition-colors mb-2">
+                      {link.name}
+                    </h3>
+                    <p className="text-slate-600 text-sm mb-3">{link.description}</p>
+                    <div className="flex items-center text-gold text-sm font-semibold">
+                      View Details
+                      <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
                     <span className="inline-block mt-2 text-xs bg-gold/10 text-gold px-2 py-1 rounded-full">
                       Detailed Guide Available
                     </span>
-                  )}
-                </CardWrapper>
+                  </Link>
+                ) : (
+                  <div className="group bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-gold border-2 border-transparent transition-all cursor-pointer block h-full">
+                    <h3 className="font-serif text-xl font-bold text-slate-900 group-hover:text-gold transition-colors mb-2">
+                      {link.name}
+                    </h3>
+                    <p className="text-slate-600 text-sm mb-3">{link.description}</p>
+                    <div className="flex items-center text-gold text-sm font-semibold">
+                      Learn More
+                      <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                )}
               </motion.div>
             );
           })}
